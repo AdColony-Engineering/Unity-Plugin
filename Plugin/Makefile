@@ -23,7 +23,7 @@ clean: clean_android clean_ios clean_unity
 ios:
 	@if [ ! -x "$(IOS_DIR)/AdColony.framework" ]; then \
 		echo "\nERROR: AdColony iOS SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(IOS_DIR), run: \n  cd "$(IOS_DIR)"\n  git clone git@github.com:AdColony/$(IOS_REPO_NAME).git\n"; \
+		echo "Make sure you've placed the SDK in the $(IOS_DIR), run: \n  cd "$(IOS_DIR)"\n  git clone https://github.com:AdColony/$(IOS_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
@@ -40,7 +40,7 @@ clean_ios:
 android_jar:
 	@if [ ! -f "$(ANDROID_FINAL_JAR)" ]; then \
 		echo "\nERROR: AdColony Android SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(ANDROID_DIR), run: \n  cd "$(ANDROID_DIR)"\n  git clone git@github.com:AdColony/$(ANDROID_REPO_NAME).git\n"; \
+		echo "Make sure you've placed the SDK in the $(ANDROID_DIR), run: \n  cd "$(ANDROID_DIR)"\n  git clone https://github.com:AdColony/$(ANDROID_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
