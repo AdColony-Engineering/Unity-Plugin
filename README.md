@@ -4,6 +4,8 @@
 - iOS SDK Version: 3.3.4
 - Android SDK Version: 3.3.4
 
+**NOTE: This is only supported on Mac OS, feel free to add Windows support and make a pull request!**
+
 For more information, see [AdColony Unity Plugin documentation](https://github.com/AdColony/AdColony-Unity-SDK-3/wiki).
 
 ## Overview
