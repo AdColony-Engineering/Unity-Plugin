@@ -2,10 +2,6 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 IOS_REPO_NAME := AdColony-iOS-SDK-3
 ANDROID_REPO_NAME := AdColony-Android-SDK-3
-FULL_GIT_PATH_IOS := git@github.com:AdColony/$(IOS_REPO_NAME).git
-FULL_GIT_PATH_ANDROID := git@github.com:AdColony/$(ANDROID_REPO_NAME).git
-IOS_SDK_BRANCH := master
-ANDROID_SDK_BRANCH := master
 
 UNITY_PLUGIN_DIR := $(shell pwd)
 IOS_DIR := $(UNITY_PLUGIN_DIR)/src/sdks/$(IOS_REPO_NAME)
@@ -15,13 +11,13 @@ ANDROID_FINAL_WRAPPER_DIR := $(UNITY_PLUGIN_DIR)/src/android
 ANDROID_FINAL_WRAPPER_JAR := $(UNITY_PLUGIN_DIR)/src/android/library/build/outputs/jar/adcolony-wrapper.jar
 UNITY_PACKAGE_FULL_PATH := $(UNITY_PLUGIN_DIR)/AdColony.unitypackage
 UNITY_TEMP_PROJECT_DIR := $(UNITY_PLUGIN_DIR)/tempunitypackage
-UNITY_BINARY := "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
-UNITY_LOG_FILE := $(UNITY_PLUGIN_DIR)/`basename $(UNITY_PACKAGE_FULL_PATH)`.build.log
+UNITY_BINARY := "/Applicaations/Unity/Unity.app/Contents/MacOS/Unity"
+UNITY_LOG_FILE := $(UNITY_PACKAGE_FULL_PATH).build.log
 
 # ----AdColony Unity Plugin package build ----
 PLUGIN_PACKAGE_FULL_PATH := $(UNITY_PLUGIN_DIR)/AdColony.unitypackage
-PLUGIN_TEMP_PROJECT_DIR := $(UNITY_PLUGIN_DIR)/temppluginpackage
-PLUGIN_LOG_FILE := $(UNITY_PLUGIN_DIR)/`basename $(PLUGIN_PACKAGE_FULL_PATH)`.build.log
+# PLUGIN_TEMP_PROJECT_DIR := $(UNITY_PLUGIN_DIR)/temppluginpackage
+# PLUGIN_LOG_FILE := $(UNITY_PLUGIN_DIR)/`basename $(PLUGIN_PACKAGE_FULL_PATH)`.build.log
 
 .PHONY: clean
 
@@ -31,25 +27,32 @@ all: unity
 
 ios:
 	@if [ ! -x "$(IOS_DIR)/AdColony.framework" ]; then \
-		echo "ERROR: AdColony iOS SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(IOS_DIR), run: \n  cd $(IOS_DIR)\n  git clone git@github.com:AdColony/AdColony-iOS-SDK-3.git\n"; \
+		echo "\nERROR: AdColony iOS SDK not found\n"; \
+		echo "Make sure you've placed the SDK in the $(IOS_DIR), run: \n  cd $(IOS_DIR)\n  git clone git@github.com:AdColony/$(IOS_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
+	# Move to plugin folder
+	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony/AdColony.framework
+	cp -r $(IOS_DIR)/AdColony.framework $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony
+	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony/AdColony.framework/Versions
+
 clean_ios:
-	rm -rf $(IOS_DIR)
+	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony/AdColony.framework
 
 # ---- Android ----
 
 android_jar:
 	@if [ ! -f "$(ANDROID_FINAL_JAR)" ]; then \
-		echo "ERROR: AdColony Android SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(ANDROID_DIR), run: \n  cd $(ANDROID_DIR)\n  git clone git@github.com:AdColony/AdColony-Android-SDK-3.git\n"; \
+		echo "\nERROR: AdColony Android SDK not found\n"; \
+		echo "Make sure you've placed the SDK in the $(ANDROID_DIR), run: \n  cd $(ANDROID_DIR)\n  git clone git@github.com:AdColony/$(ANDROID_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
 clean_android_jar:
-	rm -rf $(ANDROID_DIR)
+	rm -f $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs/AdColony.jar
+	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libadcolony.so" -exec rm {} +
+	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libjs.so" -exec rm {} +
 
 android_wrapper: android_jar
 	cp $(ANDROID_FINAL_JAR) $(ANDROID_FINAL_WRAPPER_DIR)/library/libs/AdColony.jar
@@ -57,37 +60,28 @@ android_wrapper: android_jar
 	cd $(ANDROID_FINAL_WRAPPER_DIR) && ./gradlew clean && ./gradlew makeJar
 
 clean_android_wrapper:
-	rm -rf $(UNITY_PLUGIN_DIR)/src/android/Library/AdColony.jar
-	rm -f $(UNITY_PLUGIN_DIR)/src/android/Library/bin/classes.jar
+	rm -rf $(ANDROID_FINAL_WRAPPER_DIR)/build
+	rm -rf $(ANDROID_FINAL_WRAPPER_DIR)/Library/build
+	rm -f $(ANDROID_FINAL_WRAPPER_DIR)/library/libs/AdColony.jar
+	rm -f $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs/AdColonyUnityWrapper.jar
+	find $(ANDROID_FINAL_WRAPPER_DIR)/Library/libs -name "libadcolony.so" -exec rm {} +
+	find $(ANDROID_FINAL_WRAPPER_DIR)/Library/libs -name "libjs.so" -exec rm {} +
 
 android: android_jar android_wrapper
-
-clean_android: clean_android_jar clean_android_wrapper
-
-# ---- Unity ----
-# Copies the SDK w/ android JAR wrapper from the src/SDK directory
-prepare_assets_from_sdk_root:
-	@# iOS
-	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony/AdColony.framework
-	cp -r $(IOS_DIR)/AdColony.framework $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony
-	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/iOS/AdColony/AdColony.framework/Versions
-
-	@# Android
+	# Move to plugin folder
 	rm -rf $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs
 	mkdir -p $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs
 	mkdir -p $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs
 	cp $(ANDROID_FINAL_JAR) $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs/AdColony.jar
 	cp $(ANDROID_FINAL_WRAPPER_JAR) $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/AdColony/libs/AdColonyUnityWrapper.jar
-	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libadcolony.so.*" -exec rm {} +
-	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libjs.so.*" -exec rm {} +
+	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libadcolony.so" -exec rm {} +
+	find $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs -name "libjs.so" -exec rm {} +
 	cp -r $(ANDROID_DIR)/Library/* $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs
 	rm $(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs/adcolony.jar
-	
-	@# remove unsupported Unity architectures
-	# rm -rf $(ANDROID_DIR)/Library/arm64-v8a
-	# rm -rf $(ANDROID_DIR)/Library/armeabi
-	# rm -rf $(ANDROID_DIR)/Library/x86_64
 
+clean_android: clean_android_jar clean_android_wrapper
+
+# ---- Unity ----
 
 unity_package:
 	@echo "Logfile: $(UNITY_LOG_FILE)"
@@ -98,7 +92,7 @@ unity_package:
 	@cp -r $(UNITY_PLUGIN_DIR)/Assets $(UNITY_TEMP_PROJECT_DIR)
 
 	@if [ ! -x "$(UNITY_BINARY)" ]; then \
-		echo "ERROR: $(UNITY_BINARY) not found"; exit 1; \
+		echo "\nERROR: $(UNITY_BINARY) not found\nYou might have to change the path of the Unity binary in the makefile, or move the Unity application to the default location."; exit 1; \
 	fi;
 
 	@if [ -x "$(UNITY_BINARY)" ]; then \
@@ -116,10 +110,11 @@ unity_package:
 
 	@rm -rf $(UNITY_TEMP_PROJECT_DIR)
 
-unity: android ios prepare_assets_from_sdk_root unity_package
+unity: android ios unity_package
 
 clean_unity:
-	rm -rf sdks
 	rm -rf $(UNITY_TEMP_PROJECT_DIR)
+	rm -f $(UNITY_PACKAGE_FULL_PATH)
+	rm -f $(UNITY_LOG_FILE)
 
 clean: clean_android clean_ios clean_unity
