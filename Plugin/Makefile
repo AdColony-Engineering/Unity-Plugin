@@ -1,8 +1,6 @@
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-
 IOS_REPO_NAME := AdColony-iOS-SDK-3
 ANDROID_REPO_NAME := AdColony-Android-SDK-3
-
 UNITY_PLUGIN_DIR := $(shell pwd)
 IOS_DIR := $(UNITY_PLUGIN_DIR)/src/sdks/$(IOS_REPO_NAME)
 ANDROID_DIR := $(UNITY_PLUGIN_DIR)/src/sdks/$(ANDROID_REPO_NAME)
@@ -11,17 +9,15 @@ ANDROID_FINAL_WRAPPER_DIR := $(UNITY_PLUGIN_DIR)/src/android
 ANDROID_FINAL_WRAPPER_JAR := $(UNITY_PLUGIN_DIR)/src/android/library/build/outputs/jar/adcolony-wrapper.jar
 UNITY_PACKAGE_FULL_PATH := $(UNITY_PLUGIN_DIR)/AdColony.unitypackage
 UNITY_TEMP_PROJECT_DIR := $(UNITY_PLUGIN_DIR)/tempunitypackage
-UNITY_BINARY := "/Applicaations/Unity/Unity.app/Contents/MacOS/Unity"
+UNITY_BINARY := "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
 UNITY_LOG_FILE := $(UNITY_PACKAGE_FULL_PATH).build.log
-
-# ----AdColony Unity Plugin package build ----
 PLUGIN_PACKAGE_FULL_PATH := $(UNITY_PLUGIN_DIR)/AdColony.unitypackage
-# PLUGIN_TEMP_PROJECT_DIR := $(UNITY_PLUGIN_DIR)/temppluginpackage
-# PLUGIN_LOG_FILE := $(UNITY_PLUGIN_DIR)/`basename $(PLUGIN_PACKAGE_FULL_PATH)`.build.log
 
 .PHONY: clean
 
 all: unity
+
+clean: clean_android clean_ios clean_unity
 
 # ---- iOS ----
 
@@ -116,5 +112,3 @@ clean_unity:
 	rm -rf $(UNITY_TEMP_PROJECT_DIR)
 	rm -f $(UNITY_PACKAGE_FULL_PATH)
 	rm -f $(UNITY_LOG_FILE)
-
-clean: clean_android clean_ios clean_unity

@@ -1,17 +1,18 @@
 *.swp
 *.etc
-*.DS_Store
+.DS_Store
+Assets/Plugins/Android/libs
+Assets/Plugins/libs
+Assets/Plugins/iOS/AdColony/AdColony.framework
 src/android/Library/bin
+src/android/Library/build
+src/android/build
 src/android/Library/gen
 src/android/Library/local.properties
 tmp.*
 scripts/*.log
 *.unitypackage
 *.apk
-
-# typical build folders
-ios-build/
-android-build/
 
 **/obj/Debug
 *.log
