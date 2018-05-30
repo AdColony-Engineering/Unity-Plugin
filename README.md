@@ -32,10 +32,12 @@ See the full [release notes](https://github.com/AdColony/AdColony-Unity-SDK-3/bl
 
 ## How to Build
 
-This Unity Plugin repository uses the main SDK repositories as submodules. First pull down those. From the terminal, use the following command:
+The Unity plugin requires both the native iOS and Android SDK repositories in the `Plugin/src/sdks` directory. You can pull them down using the following commands:
 
 ```
-git submodule update --init --recursive
+cd Plugin/src/sdks
+git clone https://github.com/AdColony/AdColony-Android-SDK-3.git
+git clone https://github.com/AdColony/AdColony-iOS-SDK-3.git
 ```
 
 To build the plugin, use the makefile from the Plugin folder:
