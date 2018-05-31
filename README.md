@@ -1,11 +1,12 @@
-![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)
 ![progress](https://img.shields.io/badge/progress-developing-yellow.svg)
 ![contributions](https://img.shields.io/badge/contributions-welcome-green.svg)
+<br>
+![Unity Version](https://img.shields.io/badge/Unity%20Plugin-3.3.5-808080.svg)
+![Android Version](https://img.shields.io/badge/Android%20SDK-3.3.4-808080.svg)
+![iOS Version](https://img.shields.io/badge/iOS%20SDK-3.3.4-808080.svg)
 
-- Modified: June 15, 2018
-- Unity Plugin Version: 3.3.5
-- iOS SDK Version: 3.3.4
-- Android SDK Version: 3.3.4
+*Updated June 1, 2018*
 
 # AdColony SDK Unity Plugin
 - [Requirements](#requirements)
@@ -105,7 +106,7 @@ In this case, the app id, `app4c2e4129ea7ce`, and zone id, `z4c2e422e48151` shou
 4. The Plugins/Android/AdColony/AndroidManifest.xml file is automatically generated. To update manually, select "Tools"->"AdColony"->"Update AndroidManifest.xml".
 
 #### Upgrading from SDK 3.0.x:
-In order to support thin/fat Android builds, we moved the native .so files from the `Plugins/Android/AdColony/libs` folder to the `Plugins/Android/libs` folder. Removing the `Plugins/Android/AdColony` folder before importing AdColony SDK Unity Plugin 3.1.0 is recommended. Otherwise, simply remove the `Plugins/Android/AdColony/libs/armeabi-v7a` and `Plugins/Android/AdColony/libs/x86` folders.
+In order to support thin/fat Android builds, we moved the native .so files from the `Plugins/Android/AdColony/libs` folder to the `Plugins/Android/libs` folder. Removing the `Plugins/Android/AdColony` folder before importing is recommended.
 
 #### Upgrading from SDK 2.x:
 Please note that updating from our 2.x Unity Plugin is not a drag and drop update, but rather includes breaking API and process changes. In order to take advantage of the 3.x Unity Plugin, please remove the older plugin before installing.
