@@ -1,11 +1,3 @@
-<p align="center">
-    <img src="images/ac_logo_black.png" width="300" alt="AdColony Logo"/>
-    <br>
-    <img src="images/unity-logo.png" alt="AdColony Logo"/>
-</p>
-
-<p align="center"> </p>
-
 - Modified: June 15, 2018
 - Unity Plugin Version: 3.3.5
 - iOS SDK Version: 3.3.4
@@ -80,7 +72,7 @@ Included in this repository is a sample application you can use during your test
 Log into [clients.adcolony.com](http://clients.adcolony.com/). If you have not already done so, create an app and needed zones on the website. To create new apps and video zones, locate the green buttons on the right-hand side of the Publisher section. Retrieve your **app ID** and your corresponding **zone IDs** from the AdColony website and make note of them for later use. Please reference the screenshots below on locations of the **app ID** and **zone IDs**.
 
 <p align="center">
-    <img src="images/portal_01 copy.png" width="700" alt="Get app ID"/>
+    <img src="images/portal_01.png" width="700" alt="Get app ID"/>
 </p>
 
 Click on the zone link at the bottom of the page to bring up the zone details.
@@ -257,5 +249,7 @@ For more information, please visit AdColony.com. For questions or assistance, pl
 AdColony SDK Unity Plugin is available under the Apache 2.0 license. See the LICENSE file for more info.
 
 <p align="center">
-Made with ❤️ by AdColony in Seattle and Dallas
+    Made with ❤️ by AdColony in Seattle and Dallas
+    <br>
+    <img src="images/ac_logo_black.png" width="200" alt="AdColony Logo"/>
 </p>
