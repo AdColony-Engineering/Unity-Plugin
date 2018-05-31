@@ -1,8 +1,9 @@
 IOS_REPO_NAME := AdColony-iOS-SDK-3
 ANDROID_REPO_NAME := AdColony-Android-SDK-3
 UNITY_PLUGIN_DIR := $(shell pwd)
-IOS_DIR := $(UNITY_PLUGIN_DIR)/src/sdks/$(IOS_REPO_NAME)
-ANDROID_DIR := $(UNITY_PLUGIN_DIR)/src/sdks/$(ANDROID_REPO_NAME)
+SDK_DIR := $(UNITY_PLUGIN_DIR)/src/sdks
+IOS_DIR := $(SDK_DIR)/$(IOS_REPO_NAME)
+ANDROID_DIR := $(SDK_DIR)/$(ANDROID_REPO_NAME)
 ANDROID_FINAL_JAR := $(ANDROID_DIR)/Library/adcolony.jar
 ANDROID_FINAL_WRAPPER_DIR := $(UNITY_PLUGIN_DIR)/src/android
 ANDROID_FINAL_WRAPPER_JAR := $(UNITY_PLUGIN_DIR)/src/android/library/build/outputs/jar/adcolony-wrapper.jar
@@ -23,7 +24,7 @@ clean: clean_android clean_ios clean_unity
 ios:
 	@if [ ! -x "$(IOS_DIR)/AdColony.framework" ]; then \
 		echo "\nERROR: AdColony iOS SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(IOS_DIR), run: \n  cd "$(IOS_DIR)"\n  git clone https://github.com:AdColony/$(IOS_REPO_NAME).git\n"; \
+		echo "Make sure you have a copy of the native repository in the Plugin/src/sdks directory, run: \n  cd "$(SDK_DIR)"\n  git clone https://github.com/AdColony/$(IOS_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
@@ -40,7 +41,7 @@ clean_ios:
 android_jar:
 	@if [ ! -f "$(ANDROID_FINAL_JAR)" ]; then \
 		echo "\nERROR: AdColony Android SDK not found\n"; \
-		echo "Make sure you've placed the SDK in the $(ANDROID_DIR), run: \n  cd "$(ANDROID_DIR)"\n  git clone https://github.com:AdColony/$(ANDROID_REPO_NAME).git\n"; \
+		echo "Make sure you have a copy of the native repository in the Plugin/src/sdks directory, run: \n  cd "$(SDK_DIR)"\n  git clone https://github.com/AdColony/$(ANDROID_REPO_NAME).git\n"; \
 		exit 1; \
 	fi;
 
