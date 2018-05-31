@@ -250,7 +250,7 @@ AdColony SDK Unity Plugin is available under the Apache 2.0 license. See the LIC
 <br>
 <br>
 <p align="center">
-    Made with ❤️ by AdColony in Seattle and Dallas
+    Made with ❤️ in Seattle and Dallas
     <br>
     <img src="images/ac_logo_black.png" width="200" alt="AdColony Logo"/>
 </p>
