@@ -247,6 +247,8 @@ For more information, please visit AdColony.com. For questions or assistance, pl
 # License
 AdColony SDK Unity Plugin is available under the Apache 2.0 license. See the LICENSE file for more info.
 
+<br>
+<br>
 <p align="center">
     Made with ❤️ by AdColony in Seattle and Dallas
     <br>
