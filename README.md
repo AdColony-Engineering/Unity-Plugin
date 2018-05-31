@@ -1,6 +1,6 @@
-![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
-![progress](https://img.shields.io/badge/Progress-Developing-yellow.svg)
-![contributions](https://img.shields.io/badge/Contributions-Welcome-green.svg)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+![progress](https://img.shields.io/badge/progress-developing-yellow.svg)
+![contributions](https://img.shields.io/badge/contributions-welcome-green.svg)
 
 - Modified: June 15, 2018
 - Unity Plugin Version: 3.3.5
