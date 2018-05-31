@@ -1,3 +1,7 @@
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+![progress](https://img.shields.io/badge/progress-developing-yellow.svg)
+![contributions](https://img.shields.io/badge/contributions-welcome-green.svg)
+
 - Modified: June 15, 2018
 - Unity Plugin Version: 3.3.5
 - iOS SDK Version: 3.3.4
@@ -218,7 +222,7 @@ Note: for more details on the AdColony Android setup, please refer to [AdColony 
 In compliance with the European Union's General Data Protection Regulation (GDPR), if you are collecting consent from your users, you can make use of APIs discussed below to inform AdColony and all downstream consumers of this information. Please see our [GDPR FAQ](https://www.adcolony.com/gdpr/) for more information.
 
 ### Passing Consent via AppOptions
-In the AdColony SDK Unity plugin v3.3.4, we have added explicit methods to our AppOptions API for GDPR compliance. You may use any combinations of these options. We require the GDPR consent string to have a value of "1" or "0". A value of "1" implies the user has given consent to store and process personal information and a value of "0" means the user has declined consent.
+In the AdColony SDK Unity plugin v3.3.4, we added explicit methods to our AppOptions API for GDPR compliance. You may use any combinations of these options. We require the GDPR consent string to have a value of "1" or "0". A value of "1" implies the user has given consent to store and process personal information and a value of "0" means the user has declined consent.
 
 #### Example Code
 ```csharp
