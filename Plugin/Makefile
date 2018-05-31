@@ -75,6 +75,11 @@ android: android_jar android_wrapper
 	cp -r "$(ANDROID_DIR)/Library"/* "$(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs"
 	rm "$(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs/adcolony.jar"
 
+	@# remove unsupported Unity architectures
+	rm -rf "$(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs/arm64-v8a"
+	rm -rf "$(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs/armeabi"
+	rm -rf "$(UNITY_PLUGIN_DIR)/Assets/Plugins/Android/libs/x86_64"
+
 clean_android: clean_android_jar clean_android_wrapper
 
 # ---- Unity ----
