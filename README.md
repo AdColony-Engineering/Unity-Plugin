@@ -100,10 +100,10 @@ In this case, the app id, `app4c2e4129ea7ce`, and zone id, `z4c2e422e48151` shou
 3. The AdColony SDK Unity Plugin includes Google's PlayServicesResolver to automatically pull in necessary Google Play Services libraries. If there are conflicts with this, the `play-services-ads` library is the only required. You can choose to ignore this PlayServicesResolver installation, remove the `AdColony/Editor/ADCDependencies.cs` file, and include the `play-services-ads` in another way.
 4. The Plugins/Android/AdColony/AndroidManifest.xml file is automatically generated. To update manually, select "Tools"->"AdColony"->"Update AndroidManifest.xml".
 
-### Upgrading from SDK 3.0.x:
+#### Upgrading from SDK 3.0.x:
 In order to support thin/fat Android builds, we moved the native .so files from the `Plugins/Android/AdColony/libs` folder to the `Plugins/Android/libs` folder. Removing the `Plugins/Android/AdColony` folder before importing AdColony SDK Unity Plugin 3.1.0 is recommended. Otherwise, simply remove the `Plugins/Android/AdColony/libs/armeabi-v7a` and `Plugins/Android/AdColony/libs/x86` folders.
 
-### Upgrading from SDK 2.x:
+#### Upgrading from SDK 2.x:
 Please note that updating from our 2.x Unity Plugin is not a drag and drop update, but rather includes breaking API and process changes. In order to take advantage of the 3.x Unity Plugin, please remove the older plugin before installing.
 
 ## Showing Ads
@@ -182,7 +182,6 @@ To set your zone to a rewarded interstitial zone on the portal, select the follo
     <img src="images/v4vc-zone-config_01.png" width="700" alt="Get zone ID"/>
 </p>
 
-
 # Gradle Integration
 
 Unity introduced the Gradle build system for Android in Unity 5.5. This document outlines the setup required to use AdColony with Gradle in your Unity package.
@@ -218,10 +217,10 @@ Note: for more details on the AdColony Android setup, please refer to [AdColony 
 
 In compliance with the European Union's General Data Protection Regulation (GDPR), if you are collecting consent from your users, you can make use of APIs discussed below to inform AdColony and all downstream consumers of this information. Please see our [GDPR FAQ](https://www.adcolony.com/gdpr/) for more information.
 
-### Passing Consent via AppOptions ###
+### Passing Consent via AppOptions
 In the AdColony SDK Unity plugin v3.3.4, we have added explicit methods to our AppOptions API for GDPR compliance. You may use any combinations of these options. We require the GDPR consent string to have a value of "1" or "0". A value of "1" implies the user has given consent to store and process personal information and a value of "0" means the user has declined consent.
 
-#### Example Code ###
+#### Example Code
 ```csharp
 AdColony.AppOptions options = new AdColony.AppOptions();
 
