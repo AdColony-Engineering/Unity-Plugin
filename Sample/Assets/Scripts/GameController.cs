@@ -8,9 +8,6 @@ public class GameController : MonoBehaviour
 	Asteroid asteroidRequest;
 	Asteroid asteroidPlay;
 
-	// AdColony values
-	bool IsAdInitialized = false;
-	bool IsAdAvailable = false;
 	AdColony.InterstitialAd Ad = null;
 
 	float currencyPopupTimer = 0.0f;
@@ -40,8 +37,6 @@ public class GameController : MonoBehaviour
 				asteroidConfigure.Show();
 			}
 			else {
-				IsAdInitialized = true;
-
 				// Successfully configured... show the request ad asteroid.
 				asteroidRequest.Show();
 			}
@@ -50,7 +45,6 @@ public class GameController : MonoBehaviour
 		AdColony.Ads.OnRequestInterstitial += (AdColony.InterstitialAd ad_) => {
 			Debug.Log("AdColony.Ads.OnRequestInterstitial called");
 			Ad = ad_;
-			IsAdAvailable = true;
 
 			// Successfully requested ad... show the play ad asteroid.
 			asteroidPlay.Show();
@@ -58,7 +52,6 @@ public class GameController : MonoBehaviour
 
 		AdColony.Ads.OnRequestInterstitialFailedWithZone += (string zoneId) => {
 			Debug.Log("AdColony.Ads.OnRequestInterstitialFailedWithZone called, zone: " + zoneId);
-			IsAdAvailable = false;
 
 			// Request Ad failed... show the request ad asteroid.
 			asteroidRequest.Show();
@@ -66,7 +59,6 @@ public class GameController : MonoBehaviour
 
 		AdColony.Ads.OnOpened += (AdColony.InterstitialAd ad_) => {
 			Debug.Log("AdColony.Ads.OnOpened called");
-			IsAdAvailable = false;
 
 			// Ad started playing... show the request ad asteroid for the next ad.
 			asteroidRequest.Show();
@@ -74,13 +66,11 @@ public class GameController : MonoBehaviour
 
 		AdColony.Ads.OnClosed += (AdColony.InterstitialAd ad_) => {
 			Debug.Log("AdColony.Ads.OnClosed called, expired: " + ad_.Expired);
-			IsAdAvailable = false;
 		};
 
 		AdColony.Ads.OnExpiring += (AdColony.InterstitialAd ad_) => {
 			Debug.Log("AdColony.Ads.OnExpiring called");
 			Ad = null;
-			IsAdAvailable = false;
 
 			// Current ad expired... show the request ad asteroid.
 			asteroidRequest.Show();
