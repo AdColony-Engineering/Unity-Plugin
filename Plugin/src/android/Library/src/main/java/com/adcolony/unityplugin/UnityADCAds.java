@@ -229,22 +229,27 @@ public class UnityADCAds {
         AdColony.removeRewardListener();
         AdColony.setRewardListener(new UnityADCAdColonyRewardListener());
 
-        AdColony.addCustomMessageListener(new AdColonyCustomMessageListener() {
-            @Override
-            public void onAdColonyCustomMessage(AdColonyCustomMessage customMessage) {
-                AdColony.removeCustomMessageListener(ADC_UNITY_ON_CONFIGURATION_COMPLETED);
-                try {
-                    JSONObject message = new JSONObject(customMessage.getMessage());
-                    JSONArray zoneIds = message.getJSONArray("zone_ids");
-                    List lZoneIds = UnityADCUtils.toList(message.getJSONArray("zone_ids"));
-                    String zoneListJson = UnityADCUtils.toJsonFromStringList(lZoneIds);
+        // Once 3.3.5 is released with the Android native changes for SDK-679, flip this logic
+        String zoneListJson = UnityADCUtils.toJsonFromStringList(zoneList);
         sendUnityMessage("_OnConfigure", zoneListJson);
-                } catch (JSONException e) {
-                    Log.d(TAG, "Error Parsing Configuration Completed JSON");
-                    e.printStackTrace();
-                }
-            }
-        }, ADC_UNITY_ON_CONFIGURATION_COMPLETED);
+
+        // Use once 3.3.5 is released
+        // AdColony.addCustomMessageListener(new AdColonyCustomMessageListener() {
+        //     @Override
+        //     public void onAdColonyCustomMessage(AdColonyCustomMessage customMessage) {
+        //         AdColony.removeCustomMessageListener(ADC_UNITY_ON_CONFIGURATION_COMPLETED);
+        //         try {
+        //             JSONObject message = new JSONObject(customMessage.getMessage());
+        //             JSONArray zoneIds = message.getJSONArray("zone_ids");
+        //             List lZoneIds = UnityADCUtils.toList(message.getJSONArray("zone_ids"));
+        //             String zoneListJson = UnityADCUtils.toJsonFromStringList(lZoneIds);
+        // sendUnityMessage("_OnConfigure", zoneListJson);
+        //         } catch (JSONException e) {
+        //             Log.d(TAG, "Error Parsing Configuration Completed JSON");
+        //             e.printStackTrace();
+        //         }
+        //     }
+        // }, ADC_UNITY_ON_CONFIGURATION_COMPLETED);
     }
 
     public static void requestInterstitialAd(String json) {
