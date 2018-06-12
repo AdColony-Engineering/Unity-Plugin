@@ -19,10 +19,7 @@ Sample/Library
 Sample/Temp
 Sample/Assets/AdColony*
 Sample/Assets/PlayServicesResolver*
-Sample/Assets/Plugins/Android/AdColony*
-Sample/Assets/Plugins/Android/libs
-Sample/Assets/Plugins/iOS/AdColony*
-Sample/Assets/Plugins/libs
+Sample/Assets/Plugins
 Sample/UnityPackageManager/
 
 tmp.*
@@ -41,6 +38,7 @@ scripts/*.log
 **/Assembly-CSharp.csproj
 
 *.csproj
+.vscode
 
 .gradle
 
