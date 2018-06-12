@@ -1,8 +1,7 @@
 # Change Log
 
-## v3.3.5 (2018/06/15)
+## v3.3.4.1 (2018/06/15)
 * Officially open sourced Unity plugin
-* [Unity] Fixed invalid zone list within OnConfigurationCompleted callback on Android [Unity Plugin issue #35](https://github.com/AdColony/AdColony-Unity-SDK-3/issues/35)
 
 ## v3.3.4 (2018/05/25)
 * Updated to AdColony SDK 3.3.4 (iOS) and 3.3.4 (Android)
