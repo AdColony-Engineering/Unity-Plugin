@@ -42,7 +42,6 @@ namespace AdColony.Editor {
             project.AddFrameworkToProject(targetId, "AVFoundation.framework", false);
             project.AddFrameworkToProject(targetId, "CoreMedia.framework", false);
             project.AddFrameworkToProject(targetId, "CoreTelephony.framework", false);
-            project.AddFrameworkToProject(targetId, "EventKit.framework", false);
             project.AddFrameworkToProject(targetId, "JavaScriptCore.framework", false);
             project.AddFrameworkToProject(targetId, "MessageUI.framework", false);
             project.AddFrameworkToProject(targetId, "MobileCoreServices.framework", false);
