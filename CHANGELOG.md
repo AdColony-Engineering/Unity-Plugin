@@ -1,6 +1,6 @@
 # Change Log
 
-## v3.3.4.1 (2018/06/15)
+## v3.3.5 (2018/07/06)
 * Officially open sourced Unity plugin
 
 ## v3.3.4 (2018/05/25)
